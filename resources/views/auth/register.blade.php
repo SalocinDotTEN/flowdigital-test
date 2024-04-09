@@ -29,6 +29,30 @@
                 <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
+            <div>
+                <x-label for="gender" value="{{ __('Gender') }}" />
+                <select id="gender" name="gender" required>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                </select>
+            </div>
+
+            <div>
+                <x-label for="dob" value="{{ __('Date of Birth') }}" />
+                <x-input id="dob" class="block mt-1 w-full" type="date" name="birthdate" required />
+            </div>
+
+            <div>
+                <x-label for="mailing_address" value="{{ __('Mailing Address') }}" />
+                <x-input id="mailing_address" class="block mt-1 w-full" type="text" name="mailing_address" required />
+            </div>
+
+            <div>
+                <x-label for="mailing_country" value="{{ __('Country') }}" />
+                <select name="mailing_addr_country" id="mailing_country">
+                </select>
+            </div>
+
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-label for="terms">
