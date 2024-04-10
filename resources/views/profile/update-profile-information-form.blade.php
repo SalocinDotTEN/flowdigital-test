@@ -89,7 +89,7 @@
         <div>
             <x-label for="gender" value="{{ __('Gender') }}" />
             <select id="gender" class="block mt-1 w-full text-white appearance-none" name="gender"
-                style="background-color: #111827;" required>
+                style="background-color: #111827;" wire:model="state.gender" required>
                 <option value="female">Female</option>
                 <option value="male">Male</option>
             </select>
@@ -97,20 +97,20 @@
 
         <div>
             <x-label for="birthdate" value="{{ __('Date of Birth') }}" />
-            <x-input id="birthdate" class="block mt-1 w-full" type="date" name="birthdate" required />
+            <x-input id="birthdate" class="block mt-1 w-full" type="date" name="birthdate" wire:model="state.birthdate" required />
         </div>
 
         <div>
             <x-label for="mailing_address" value="{{ __('Mailing Address') }}" />
-            <x-input id="mailing_address" class="block mt-1 w-full" type="text" name="mailing_address" required />
+            <x-input id="mailing_address" class="block mt-1 w-full" type="text" name="mailing_address" wire:model="state.mailing_address" required />
         </div>
 
         <div>
             <x-label for="mailing_addr_country" value="{{ __('Country') }}" />
             <select name="mailing_addr_country" id="mailing_addr_country" class="block mt-1 w-full text-white appearance-none"
-                style="background-color: #111827;">
+                style="background-color: #111827;" wire:model="state.mailing_addr_country">
                 @foreach (LaravelCountries::getCountries()->getData() as $country)
-                    <option value="{{ $country->iso2 }}" {{ $country->iso2 == 'MY' ? 'selected' : '' }}>
+                    <option value="{{ $country->iso2 }}">
                         {{ $country->name }}</option>
                 @endforeach
             </select>
