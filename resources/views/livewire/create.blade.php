@@ -19,6 +19,16 @@
                             @enderror
                         </div>
                         <div class="mb-4">
+                            <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
+                            <input type="date"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="date" wire:model="post_date"
+                                value="{{ old('post_date', $post_date ?? now()->format('Y-m-d')) }}">
+                            @error('post_date')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
                             <label for="exampleFormControlInput2"
                                 class="block text-gray-700 text-sm font-bold mb-2">Meta:</label>
                             <textarea
@@ -35,6 +45,15 @@
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="exampleFormControlInput2" wire:model="content" placeholder="Enter Blog post"></textarea>
                             @error('content')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="published" class="block text-gray-700 text-sm font-bold mb-2">Published:</label>
+                            <input type="checkbox"
+                                class="shadow appearance-none border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="published" wire:model="published">
+                            @error('published')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
