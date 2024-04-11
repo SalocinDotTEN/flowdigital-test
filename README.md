@@ -18,6 +18,8 @@ It is important to have PHP and Composer installed on your machine. As well as N
 1. Run php artisan serve
 1. Visit the displayed URL in your browser.
 
+To login or register, click the link on the top right of the page.
+
 ## Caveats
 
 Some features are still not available or being built.
