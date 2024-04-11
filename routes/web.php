@@ -15,7 +15,7 @@ use App\Livewire\BlogEntries;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ['blogPosts' => App\Models\BlogPosts::with('user')->get()]);
 });
 
 Route::middleware([
