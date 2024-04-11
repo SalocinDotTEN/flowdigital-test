@@ -15,7 +15,7 @@ use App\Livewire\BlogEntries;
 */
 
 Route::get('/', function () {
-    return view('welcome', ['blogPosts' => App\Models\BlogPosts::with('user')->get()]);
+    return view('home', ['blogPosts' => App\Models\BlogPosts::with('user')->get()]);
 });
 
 Route::get('/article/{slug}', [\App\Http\Controllers\BlogPostsController::class, 'show'])->name('article');
