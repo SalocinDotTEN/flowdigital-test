@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('blog_post_category', function (Blueprint $table) {
             $table->id();
             $table->foreignId('blog_post_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('blog_category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
