@@ -19,6 +19,15 @@
                             @enderror
                         </div>
                         <div class="mb-4">
+                            <label for="slug" class="block text-gray-700 text-sm font-bold mb-2">Slug:</label>
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="slug" wire:model="slug" placeholder="Enter Slug">
+                            @error('slug')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
                             <label for="date" class="block text-gray-700 text-sm font-bold mb-2">Date:</label>
                             <input type="date"
                                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -52,7 +61,7 @@
                             <label for="published" class="block text-gray-700 text-sm font-bold mb-2">Published:</label>
                             <input type="checkbox"
                                 class="shadow appearance-none border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                                id="published" wire:model="published">
+                                id="published" wire:model="published" @if (old('published', $published ?? false)) checked @endif>
                             @error('published')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror

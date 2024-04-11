@@ -38,7 +38,7 @@
                         <tbody>
                             @forelse ($blogPosts as $blogPostIdx => $blogPost)
                                 <tr wire:key={{ $blogPostIdx }}>
-                                    <td class="border px-4 py-2">{{ $blogPost->post_date->format('m/d/y') }}</td>
+                                    <td class="border px-4 py-2">{{ $blogPost->post_date }}</td>
                                     <td class="border px-4 py-2">{{ $blogPost->title }}</td>
                                     <td class="border px-4 py-2">{{ $blogPost->slug }}</td>
                                     <td class="border px-4 py-2">{{ $blogPost->published }}</td>

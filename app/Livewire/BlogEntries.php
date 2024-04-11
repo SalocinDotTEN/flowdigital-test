@@ -41,16 +41,17 @@ class BlogEntries extends Component
     public function store()
     {
         $this->validate([
-            'post_date' => 'required',
-            'title' => 'required',
-            // 'meta' => 'required',
-            'content' => 'required',
-            'slug' => 'required',
-            // 'image' => 'required',
-            'published' => 'required',
+            'post_date' => ['required'],
+            'title' => ['required'],
+            'meta' => ['nullable'],
+            'content' => ['required'],
+            'slug' => ['required', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/'],
+            'image' => ['nullable'],
+            'published' => ['required'],
         ]);
 
         BlogPosts::updateOrCreate([
+            'user_id' => auth()->id(),
             'post_date' => $this->post_date,
             'title' => $this->title,
             'meta' => $this->meta,
