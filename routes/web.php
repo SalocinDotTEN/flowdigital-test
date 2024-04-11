@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome', ['blogPosts' => App\Models\BlogPosts::with('user')->get()]);
 });
 
+Route::get('/article/{slug}', [\App\Http\Controllers\BlogPostsController::class, 'show'])->name('article');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

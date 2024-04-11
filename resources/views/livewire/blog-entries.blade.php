@@ -38,10 +38,10 @@
                         <tbody>
                             @forelse ($blogPosts as $blogPostIdx => $blogPost)
                                 <tr wire:key={{ $blogPostIdx }}>
-                                    <td class="border px-4 py-2">{{ $blogPost->post_date }}</td>
-                                    <td class="border px-4 py-2">{{ $blogPost->title }}</td>
-                                    <td class="border px-4 py-2">{{ $blogPost->slug }}</td>
-                                    <td class="border px-4 py-2">{{ $blogPost->published }}</td>
+                                    <td class="border px-4 py-2 text-white">{{ $blogPost->post_date }}</td>
+                                    <td class="border px-4 py-2 text-white">{{ $blogPost->title }}</td>
+                                    <td class="border px-4 py-2 text-white">{{ $blogPost->slug }}</td>
+                                    <td class="border px-4 py-2 text-white">{{ $blogPost->published ? "Yes" : "No" }}</td>
                                     <td class="border px-4 py-2">
                                         <button wire:click="edit({{ $blogPost->id }})"
                                             class="flex px-4 py-2 bg-gray-500 text-gray-900 cursor-pointer">Edit</button>

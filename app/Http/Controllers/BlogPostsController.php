@@ -37,9 +37,11 @@ class BlogPostsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(BlogPosts $blogPosts)
+    public function show($slug)
     {
-        //
+        $blogPost = BlogPosts::where('slug', $slug)->first();
+
+        return view('article', ['post' => $blogPost]);
     }
 
     /**
