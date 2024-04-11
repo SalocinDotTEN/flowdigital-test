@@ -6,6 +6,7 @@ It is important to have PHP and Composer installed on your machine. As well as N
 
 ## How to run the app
 
+1. Open terminal
 1. Clone the repository
 1. Run composer install
 1. Ensure your node version is new enough above version 18.
@@ -16,3 +17,9 @@ It is important to have PHP and Composer installed on your machine. As well as N
 1. Run php artisan key:generate
 1. Run php artisan serve
 1. Visit the displayed URL in your browser.
+
+## Caveats
+
+Some features are still not available or being built.
+
+Such as the comments, search and ability to view posts by category and tags.
