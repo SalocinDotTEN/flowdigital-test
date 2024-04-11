@@ -58,6 +58,26 @@
                             @enderror
                         </div>
                         <div class="mb-4">
+                            <label for="categories"
+                                class="block text-gray-700 text-sm font-bold mb-2">Categories:</label>
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="categories" wire:model="categories"
+                                placeholder="Enter Categories (comma separated)">
+                            @error('categories')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
+                            <label for="tags" class="block text-gray-700 text-sm font-bold mb-2">Tags:</label>
+                            <input type="text"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="tags" wire:model="tags" placeholder="Enter Tags (comma separated)">
+                            @error('tags')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="mb-4">
                             <label for="published" class="block text-gray-700 text-sm font-bold mb-2">Published:</label>
                             <input type="checkbox"
                                 class="shadow appearance-none border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline"

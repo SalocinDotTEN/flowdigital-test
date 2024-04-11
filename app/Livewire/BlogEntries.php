@@ -4,10 +4,12 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\BlogPosts;
+use App\Models\Category;
+use App\Models\Tag;
 
 class BlogEntries extends Component
 {
-    public $blogPosts, $post_date, $title, $meta, $content, $slug, $image, $published;
+    public $blogPosts, $post_date, $title, $meta, $content, $slug, $image, $categories, $tags, $published;
     public $isModalOpen = 0;
     public function render()
     {
@@ -31,35 +33,55 @@ class BlogEntries extends Component
     {
         $this->post_date = '';
         $this->title = '';
-        $this->meta = '';
-        $this->content = '';
         $this->slug = '';
         $this->image = '';
+        $this->meta = '';
+        $this->content = '';
+        $this->categories = '';
+        $this->tags = '';
         $this->published = '';
     }
 
     public function store()
     {
+        $categoriesArray = explode(',', $this->categories);
+        $tagsArray = explode(',', $this->tags);
+
+        $categoryIds = [];
+        foreach ($categoriesArray as $categoryName) {
+            $category = Category::firstOrCreate(['name' => $categoryName]);
+            $categoryIds[] = $category->id;
+        }
+
+        $tagIds = [];
+        foreach ($tagsArray as $tagName) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $tagIds[] = $tag->id;
+        }
+
         $this->validate([
             'post_date' => ['required'],
             'title' => ['required'],
-            'meta' => ['nullable'],
-            'content' => ['required'],
             'slug' => ['required', 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/'],
             'image' => ['nullable'],
+            'meta' => ['nullable'],
+            'content' => ['required'],
             'published' => ['required'],
         ]);
 
-        BlogPosts::updateOrCreate([
+        $article = BlogPosts::updateOrCreate([
             'user_id' => auth()->id(),
             'post_date' => $this->post_date,
+            'image' => $this->image,
             'title' => $this->title,
+            'slug' => $this->slug,
             'meta' => $this->meta,
             'content' => $this->content,
-            'slug' => $this->slug,
-            'image' => $this->image,
             'published' => $this->published,
         ]);
+
+        $article->categories()->sync($categoryIds);
+        $article->tags()->sync($tagIds);
 
         session()->flash('message', $this->slug ? 'Blog Entry Updated Successfully.' : 'Blog Entry Created Successfully.');
 
@@ -69,14 +91,16 @@ class BlogEntries extends Component
 
     public function edit($id)
     {
-        $blogPosts = BlogPosts::findOrFail($id);
+        $blogPosts = BlogPosts::with('categories','tags')->findOrFail($id);
         // $this->id = $id;
         $this->post_date = $blogPosts->post_date;
         $this->title = $blogPosts->title;
-        $this->meta = $blogPosts->meta;
-        $this->content = $blogPosts->content;
         $this->slug = $blogPosts->slug;
         $this->image = $blogPosts->image;
+        $this->meta = $blogPosts->meta;
+        $this->content = $blogPosts->content;
+        $this->categories = implode(',', $blogPosts->categories->pluck('name')->toArray());
+        $this->tags = implode(',', $blogPosts->tags->pluck('name')->toArray());
         $this->published = $blogPosts->published;
 
         $this->openModalPopover();
