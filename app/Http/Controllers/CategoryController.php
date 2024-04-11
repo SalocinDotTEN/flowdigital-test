@@ -11,9 +11,15 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($categoryId)
     {
-        //
+        $category = Category::with('blog_posts')->find($categoryId);
+
+        if (!$category) {
+            return redirect()->route('home')->with('error', 'Category not found');
+        }
+
+        return view('category', ['category' => $category]);
     }
 
     /**
