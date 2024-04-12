@@ -20,6 +20,10 @@ Route::get('/', function () {
 
 Route::get('/article/{slug}', [\App\Http\Controllers\BlogPostsController::class, 'show'])->name('article');
 
+Route::get('/category/{categoryId}', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category');
+
+Route::get('/tag/{tagId}', [\App\Http\Controllers\TagController::class, 'index'])->name('tag');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

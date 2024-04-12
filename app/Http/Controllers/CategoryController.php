@@ -13,13 +13,13 @@ class CategoryController extends Controller
      */
     public function index($categoryId)
     {
-        $category = Category::with('blog_posts')->find($categoryId);
+        $category = Category::with('blogPosts')->find($categoryId);
 
         if (!$category) {
             return redirect()->route('home')->with('error', 'Category not found');
         }
 
-        return view('category', ['category' => $category]);
+        return view('category', ['category' => $category, 'posts' => $category->blogPosts]);
     }
 
     /**
